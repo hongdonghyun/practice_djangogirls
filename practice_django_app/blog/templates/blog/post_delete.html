@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-primary pull-right" type="submit">삭제</button>
+</form>
+
+{% endblock %}
+

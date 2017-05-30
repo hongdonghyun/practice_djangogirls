@@ -3,7 +3,7 @@
 {% block content %}
 <div class ="post-list">
     <div class ="post">
-        <h1><a href="{% url 'post_detail' pk=post.pk%}"></a>{{ post.title }}</h1>
+        <h1><a href="{% url 'post_detail' pk=post.pk%}"></a>{{ post.title }}</h1> {# urls.py의 url 사용 name = post_detail #}
         <p>{{ post.text }}</p>
         <p>만든 날짜 : {{ post.published_date }}</p>
     </div>

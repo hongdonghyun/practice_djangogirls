@@ -1,15 +1,18 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/base.html' %} {# base.html 연동 #}
 
 
-{% block content %}
-
-<div class = 'post-list'>{% for post in posts %}
+{% block content %} {# 내용의 시작 #}
+<a href="{% url 'post_create' %}" class="btn btn-primary pull-right">작성하기</a>
+<div class = 'post-list'>{% for post in posts %}   {# django for문 #}
             <div class="post">
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p class="text-right"><small>{{post.published_date}}</small></p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1> {# urls.py의 url사용 주소는 name = post_detail 기본키는 post.pk #}<p class="text-right"><small>{{post.published_date}}</small></p>
+
+               {# views.py 안에 있는 context post사용 #}
             <p>{{post.text|truncatechars:100}}</p>
+                <a href="{% url 'post_modify' pk=post.pk %}" class="btn btn-primary pull-right">수정</a>
+                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-primary pull-right" type="submit">삭제</button></a>
             <p>만든 날짜 :{{post.created_date}}</p>
             </div>
-            {% endfor %}
+            {% endfor %}     {# for문 종료 #}
         </div>
-{% endblock %}
+{% endblock %} {# 내용의 끝 #}
