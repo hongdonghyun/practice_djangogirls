@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class ="post-list">
+    <div class ="post">
+        <h1><a href="{% url 'post_detail' pk=post.pk%}"></a>{{ post.title }}</h1>
+        <p>{{ post.text }}</p>
+        <p>만든 날짜 : {{ post.published_date }}</p>
+    </div>
+
+</div>
+
+{% endblock %}
