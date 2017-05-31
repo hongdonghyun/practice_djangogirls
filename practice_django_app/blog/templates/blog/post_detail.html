@@ -5,7 +5,10 @@
     <div class ="post">
         <h1><a href="{% url 'post_detail' pk=post.pk%}"></a>{{ post.title }}</h1> {# urls.py의 url 사용 name = post_detail #}
         <p>{{ post.text }}</p>
+        <a href="{% url 'post_modify' pk=post.pk %}" class="btn btn-primary pull-right">수정</a>
+                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-primary pull-right">삭제</button></a>
         <p>만든 날짜 : {{ post.published_date }}</p>
+
     </div>
 
 </div>

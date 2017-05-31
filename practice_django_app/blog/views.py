@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 from .forms import PostCreateForm
@@ -19,7 +20,10 @@ def post_list(request):
     return render(request, 'blog/post_list.html', context=context)
 
 def post_detail(request,pk):
-    posts = Post.objects.get(pk=pk)
+    try:
+        posts = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        raise Http404("Question does not exist!!!")
 
     context = {
         'post' : posts
@@ -48,7 +52,8 @@ def post_create(request):
                 text = text,
                 author = user,
             )
-            return redirect('post_detail',pk=post.pk)
+            return redirect('post_list')
+            # return redirect('post_detail',pk=post.pk)
         else:
             context = {
                 'form' : form,
@@ -79,14 +84,5 @@ def post_modify(request,pk):
 
 def post_delete(request,pk):
     post = Post.objects.get(pk=pk)
-    if request.method =='POST':
-
-        post.delete()
-        return redirect('post_list')
-    elif request.method == 'GET':
-        context = {
-            'post': post,
-        }
-        return render(request, 'blog/post_delete.html', context=context)
-
-
+    post.delete()
+    return redirect('post_list')

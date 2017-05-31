@@ -9,8 +9,7 @@
 
                {# views.py 안에 있는 context post사용 #}
             <p>{{post.text|truncatechars:100}}</p>
-                <a href="{% url 'post_modify' pk=post.pk %}" class="btn btn-primary pull-right">수정</a>
-                <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-primary pull-right" type="submit">삭제</button></a>
+
             <p>만든 날짜 :{{post.created_date}}</p>
             </div>
             {% endfor %}     {# for문 종료 #}
