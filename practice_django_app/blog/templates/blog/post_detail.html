@@ -8,9 +8,8 @@
         <a href="{% url 'post_modify' pk=post.pk %}" class="btn btn-primary pull-right">수정</a>
                 <a href="{% url 'post_delete' pk=post.pk %}"><button class="btn btn-primary pull-right">삭제</button></a>
         <p>만든 날짜 : {{ post.published_date }}</p>
-
     </div>
-
+    <a href=" {% url 'post_list' %}" class="btn btn-primary pull-leftgit">뒤로가기</a>
 </div>
 
 {% endblock %}
